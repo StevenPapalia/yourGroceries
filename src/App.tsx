@@ -3,11 +3,11 @@ import { ajax } from 'jquery';
 import GroceryList from './GroceryList'
 import GoToCart from './GoToCart'
 
-const App = () => {
-  const [groceries, setGroceries] = React.useState([]);
-  const [cart, setCart] = React.useState([]);
+const App: React.FC = () => {
+  const [groceries, setGroceries] = React.useState<{ item: string; category: string; price: number }[]>([]);
+  const [cart, setCart] = React.useState<({ item: string; category: string; price: number; } | number)[]>([]);
 
-  const addToCart = (grocery: { item: string; category: string; price: number; }) => {
+  const addToCart = (grocery: { item: string, category: string, price: number }) => {
     let newCart = [];
     let found = false;
     cart.map((g) => {

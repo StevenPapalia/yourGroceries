@@ -1,12 +1,12 @@
 import * as React from 'react';
 import CheckOutModal from './CheckOutModal';
 
-type CheckOutProps = {
+interface Props {
   cart: ({ item: string; category: string; price: number; }|number)[]
 }
 
-const CheckOut = (props: CheckOutProps) => {
-  const [checkOutFormView, setcheckOutFormView] = React.useState(false);
+const CheckOut: React.FC<Props> = (props) => {
+  const [checkOutFormView, setcheckOutFormView] = React.useState<boolean>(false);
 
   const toggleCheckOutFormView = () => { setcheckOutFormView(!checkOutFormView); }
 

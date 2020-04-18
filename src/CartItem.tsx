@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-type CartItemProps = {
+interface Props {
   key: number,
   cartItem: ({ item: string; category: string; price: number; }|number)
 }
 
-const GroceryItem = (props: CartItemProps) => {
+const GroceryItem: React.FC<Props> = (props) => {
   return (
     <div>
       <span>Item: {props.cartItem[0].item}, </span>

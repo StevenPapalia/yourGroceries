@@ -2,11 +2,11 @@ import * as React from 'react';
 import CartItem from './CartItem';
 import CheckOut from './CheckOut';
 
-type CartProps = {
+interface Props {
   cart: ({ item: string; category: string; price: number; }|number)[]
 }
 
-const Cart = (props: CartProps) => {
+const Cart: React.FC<Props> = (props) => {
   return (
     <div>
       {props.cart.map((item, index) => {

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Cart from './Cart';
 
-type GoToCartProps = {
-  cart: ({ item: string; category: string; price: number; }|number)[]
+interface Props {
+  cart: ({ item: string; category: string; price: number; } | number)[]
 }
 
-const GoToCart = (props: GoToCartProps) => {
-  const [cartView, setCartView] = React.useState(false);
+const GoToCart: React.FC<Props> = (props) => {
+  const [cartView, setCartView] = React.useState<boolean>(false);
 
   const toggleCartView = () => { setCartView(!cartView); }
 

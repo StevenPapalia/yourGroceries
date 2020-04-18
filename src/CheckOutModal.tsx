@@ -1,24 +1,18 @@
 import * as React from 'react';
 import * as Modal from 'react-modal';
 
-type CheckOutModalProps = {
+interface Props {
   toggleCheckOutFormView: () => void
 }
 
-const CheckOutModal = (props: CheckOutModalProps) => {
-  const [modalIsOpen, setModalIsOpen] = React.useState(false);
-  function openModal() {
-    setModalIsOpen(true);
-  }
- 
-  function closeModal(){
-    setModalIsOpen(false);
-    props.toggleCheckOutFormView();
-  }
+const CheckOutModal: React.FC<Props> = (props) => {
+  const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    openModal();
-  }, []);
+  function openModal() { setModalIsOpen(true); }
+ 
+  function closeModal(){ setModalIsOpen(false); props.toggleCheckOutFormView(); }
+
+  React.useEffect(() => { openModal(); }, []);
 
   return (
     <div>
