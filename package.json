@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "nodemon server/server.js"
+    "start": "nodemon server/server.js",
+    "seed": "node database/seed.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "@types/react-modal": "^3.10.5",
     "express": "^4.17.1",
     "jquery": "^3.5.0",
+    "mysql": "^2.18.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-modal": "^3.11.2"
