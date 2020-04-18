@@ -20,12 +20,16 @@
   "homepage": "https://github.com/StevenPapalia/yourgroceries#readme",
   "dependencies": {
     "@types/react-modal": "^3.10.5",
+    "@types/react-stripe-elements": "^6.0.4",
+    "@types/stripe": "^7.13.23",
     "express": "^4.17.1",
     "jquery": "^3.5.0",
     "mysql": "^2.18.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-modal": "^3.11.2"
+    "react-modal": "^3.11.2",
+    "react-stripe-elements": "^6.1.1",
+    "stripe": "^8.44.0"
   },
   "devDependencies": {
     "@types/node": "^13.11.1",
