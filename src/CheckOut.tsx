@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { StripeProvider, Elements } from 'react-stripe-elements';
 import CheckOutModal from './CheckOutModal';
+import PaymentForm from './PaymentForm';
 
 interface Props {
   cart: ({ item: string; category: string; price: number; }|number)[]
@@ -13,7 +15,7 @@ const CheckOut: React.FC<Props> = (props) => {
   return (
     <div>
       {<button onClick={toggleCheckOutFormView}>Checkout</button>}
-      {checkOutFormView ? <CheckOutModal toggleCheckOutFormView={toggleCheckOutFormView}/> : null}
+      {checkOutFormView ? <CheckOutModal cart={props.cart} toggleCheckOutFormView={toggleCheckOutFormView}/> : null}
     </div>
   );
 }

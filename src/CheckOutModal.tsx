@@ -1,8 +1,12 @@
 import * as React from 'react';
 import * as Modal from 'react-modal';
+import { StripeProvider, Elements, ReactStripeElements } from 'react-stripe-elements';
+import PaymentForm from './PaymentForm';
+import { stripeApiKey } from './keys';
 
 interface Props {
-  toggleCheckOutFormView: () => void
+  toggleCheckOutFormView: () => void,
+  cart: ({ item: string; category: string; price: number; }|number)[]
 }
 
 const CheckOutModal: React.FC<Props> = (props) => {
@@ -22,8 +26,12 @@ const CheckOutModal: React.FC<Props> = (props) => {
         ariaHideApp={false}
         contentLabel="Example Modal"
       >
+        <StripeProvider apiKey={stripeApiKey}>
+          <Elements>
+            <PaymentForm cart={props.cart}/>
+          </Elements>
+        </StripeProvider>
         <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
       </Modal>
     </div>
   );

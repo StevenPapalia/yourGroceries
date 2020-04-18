@@ -3,7 +3,7 @@ import CartItem from './CartItem';
 import CheckOut from './CheckOut';
 
 interface Props {
-  cart: ({ item: string; category: string; price: number; }|number)[]
+  cart: ({ item: string; category: string; price: number; } | number)[]
 }
 
 const Cart: React.FC<Props> = (props) => {
