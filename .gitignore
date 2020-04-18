@@ -1,3 +1,4 @@
 node_modules
 dist/bundle.js
 database/config.js
+src/keys.js
