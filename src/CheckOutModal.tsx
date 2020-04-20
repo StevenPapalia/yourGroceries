@@ -6,15 +6,16 @@ import { stripeApiKey } from './keys';
 
 interface Props {
   toggleCheckOutFormView: () => void,
-  cart: ({ item: string; category: string; price: number; }|number)[]
+  emptyCart: () => void,
+  cart: ({ item: string, category: string, price: number } | number)[]
 }
 
-const CheckOutModal: React.FC<Props> = (props) => {
+const CheckOutModal: React.FC<Props> = ({ cart, toggleCheckOutFormView, emptyCart }) => {
   const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
 
   function openModal() { setModalIsOpen(true); }
  
-  function closeModal(){ setModalIsOpen(false); props.toggleCheckOutFormView(); }
+  function closeModal() { setModalIsOpen(false); toggleCheckOutFormView(); }
 
   React.useEffect(() => { openModal(); }, []);
 
@@ -28,10 +29,9 @@ const CheckOutModal: React.FC<Props> = (props) => {
       >
         <StripeProvider apiKey={stripeApiKey}>
           <Elements>
-            <PaymentForm cart={props.cart}/>
+            <PaymentForm cart={cart} closeModal={closeModal} emptyCart={emptyCart} />
           </Elements>
         </StripeProvider>
-        <button onClick={closeModal}>close</button>
       </Modal>
     </div>
   );

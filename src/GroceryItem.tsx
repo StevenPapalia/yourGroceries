@@ -7,13 +7,14 @@ interface Props {
   addToCart: (grocery: { item: string; category: string; price: number; }) => void
 }
 
-const GroceryItem: React.FC<Props> = (props) => {
+const GroceryItem: React.FC<Props> = ({ grocery, addToCart }) => {
+  const { item, category, price } = grocery;
   return (
     <GroceryItemDiv>
-      <span>Item: {props.grocery.item}, </span>
-      <span>Category: {props.grocery.category}, </span>
-      <span>Price: ${props.grocery.price.toFixed(2)} </span>
-      <span><button onClick={()=>{props.addToCart(props.grocery)}}>Add To Cart </button></span>
+      <span>Item: {item}, </span>
+      <span>Category: {category}, </span>
+      <span>Price: ${price.toFixed(2)} </span>
+      <span><button onClick={()=>{addToCart(grocery)}}>Add To Cart </button></span>
     </GroceryItemDiv>
   );
 }

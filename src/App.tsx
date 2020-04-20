@@ -19,6 +19,8 @@ const App: React.FC = () => {
     setCart(newCart);
   }
 
+  const emptyCart = () => { setCart([]); }
+
   React.useEffect(() => {
     ajax({
       method: 'GET',
@@ -33,7 +35,7 @@ const App: React.FC = () => {
       <Header>Welcome to yourgroceries.com</Header>
       <Wrapper>
         <GroceryList groceries={groceries} addToCart={addToCart} />
-        <GoToCart cart={cart} />
+        <GoToCart cart={cart} emptyCart={emptyCart} />
       </Wrapper>
     </div>
   );

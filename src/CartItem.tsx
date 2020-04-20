@@ -6,13 +6,13 @@ interface Props {
   cartItem: ({ item: string; category: string; price: number; } | number)
 }
 
-const GroceryItem: React.FC<Props> = (props) => {
+const GroceryItem: React.FC<Props> = ({ cartItem }) => {
   return (
     <CartItemDiv>
-      <span>Item: {props.cartItem[0].item}, </span>
-      <span>Category: {props.cartItem[0].category}, </span>
-      <span>Amount: {props.cartItem[1]}, </span>
-      <span>Total Price: ${(props.cartItem[0].price * props.cartItem[1]).toFixed(2)}</span>
+      <span>Item: {cartItem[0].item}, </span>
+      <span>Category: {cartItem[0].category}, </span>
+      <span>Amount: {cartItem[1]}, </span>
+      <span>Total Price: ${(cartItem[0].price * cartItem[1]).toFixed(2)}</span>
     </CartItemDiv>
   );
 }

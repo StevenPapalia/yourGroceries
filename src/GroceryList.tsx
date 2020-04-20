@@ -7,7 +7,7 @@ interface Props {
   addToCart: (grocery: { item: string; category: string; price: number; }) => void
 }
 
-const GroceryList: React.FC<Props> = (props) => {
+const GroceryList: React.FC<Props> = ({ groceries, addToCart }) => {
   const [selected, setSelected] = React.useState<string>("All");
   const [searchForm, setSearchForm] = React.useState<string>("");
 
@@ -26,9 +26,9 @@ const GroceryList: React.FC<Props> = (props) => {
       </select>
       <span>Search: <Input type="text" value={searchForm} onChange={updateSearchForm} placeholder="ex: steak"/></span>
       <div>
-        {props.groceries.filter((grocery) => { return grocery.item.toUpperCase().includes(searchForm.toUpperCase())}).map((grocery, index) => {
-          return selected === "All" ? <GroceryItem key={index} grocery={grocery} addToCart={props.addToCart} />
-          : selected === grocery.category ? <GroceryItem key={index} grocery={grocery} addToCart={props.addToCart} />
+        {groceries.filter((grocery) => { return grocery.item.toUpperCase().includes(searchForm.toUpperCase())}).map((grocery, index) => {
+          return selected === "All" ? <GroceryItem key={index} grocery={grocery} addToCart={addToCart} />
+          : selected === grocery.category ? <GroceryItem key={index} grocery={grocery} addToCart={addToCart} />
           : null
         })}
       </div>
