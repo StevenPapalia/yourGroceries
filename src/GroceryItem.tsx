@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GroceryItemDiv } from './styles';
+import { GroceryItemDiv, AddToCartButton } from './styles';
 
 interface Props {
   key: number,
@@ -14,7 +14,7 @@ const GroceryItem: React.FC<Props> = ({ grocery, addToCart }) => {
       <span>Item: {item}, </span>
       <span>Category: {category}, </span>
       <span>Price: ${price.toFixed(2)} </span>
-      <span><button onClick={()=>{addToCart(grocery)}}>Add To Cart </button></span>
+      <span><AddToCartButton onClick={()=>{addToCart(grocery)}}>Add To Cart </AddToCartButton></span>
     </GroceryItemDiv>
   );
 }

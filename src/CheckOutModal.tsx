@@ -25,7 +25,6 @@ const CheckOutModal: React.FC<Props> = ({ cart, toggleCheckOutFormView, emptyCar
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         ariaHideApp={false}
-        contentLabel="Example Modal"
       >
         <StripeProvider apiKey={stripeApiKey}>
           <Elements>

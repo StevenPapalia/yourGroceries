@@ -31,7 +31,7 @@ const charge = (token, amt) => {
   });
 }
 
-app.post('/purchase', jsonParser, async (req, res, next) => {
+app.post('/purchase', jsonParser, async (req, res) => {
   try {
     let data = await charge(req.body.token.id, req.body.amount);
     res.send(data.receipt_url);

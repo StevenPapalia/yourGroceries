@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ajax } from 'jquery';
 import { CardElement, injectStripe, ReactStripeElements } from 'react-stripe-elements';
-import { Input } from './styles';
+import { Input, Label, PaymentFormDiv, ActionButton } from './styles';
 
 interface Props {
   stripe?: ReactStripeElements.StripeProps,
@@ -36,12 +36,19 @@ const PaymentForm: React.FC<Props> = ({ stripe, cart, closeModal, emptyCart }) =
       <h1>Payment Form</h1>
       {receiptURL.length ? <div><div>Thank you for your purchase!</div><a href={receiptURL}>To view your receipt please click here!</a></div> :
       <form onSubmit={handleSubmit}>
-        <div><label>Name: </label><Input type="text" value={name} onChange={updateName} placeholder="name" required /></div>
-        <div><label>Amount: </label><span>${Number(cart.reduce((total, el) => { return Number(total) + (el[0].price * el[1]); }, 0)).toFixed(2)}</span></div>
-        <div><label>Credit Card Information: </label><CardElement /></div>
-        <div><button>Submit Payment</button></div>
+        <PaymentFormDiv>
+          <Label payment> Full Name: </Label>
+          <Input type="text" value={name} onChange={updateName} placeholder="name" required />
+        </PaymentFormDiv>
+        <PaymentFormDiv>
+          <Label payment>Amount: </Label>
+          <Label payment>${Number(cart.reduce((total, el) => { return Number(total) + (el[0].price * el[1]); }, 0)).toFixed(2)}</Label>
+        </PaymentFormDiv>
+        <PaymentFormDiv><Label payment>Credit Card Information: </Label></PaymentFormDiv>
+        <PaymentFormDiv><CardElement /></PaymentFormDiv>
+        <PaymentFormDiv><ActionButton>Submit Payment</ActionButton></PaymentFormDiv>
       </form>}
-      <button onClick={() => { closeModal(); if (receiptURL) { emptyCart(); } }}>close</button>
+      <PaymentFormDiv><ActionButton onClick={() => { closeModal(); if (receiptURL) { emptyCart(); } }}>close</ActionButton></PaymentFormDiv>
     </div>
   );
 }
