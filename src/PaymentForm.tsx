@@ -20,7 +20,6 @@ const PaymentForm: React.FC<Props> = ({ stripe, cart, closeModal, emptyCart }) =
     try {
       let { token } = await stripe.createToken({ name });
       let amount = Number(cart.reduce((total, el) => { return Number(total) + (el[0].price * el[1]); }, 0)).toFixed(2);
-      if (!amount) { return; }
       ajax({
         method: 'POST',
         url: '/purchase',

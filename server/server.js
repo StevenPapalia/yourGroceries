@@ -24,7 +24,7 @@ const stripe = new stripeLoader(stripeApiSecretKey);
 
 const charge = (token, amt) => {
   return stripe.charges.create({
-    amount: amt * 100,
+    amount: Number((amt * 100).toFixed(2)),
     currency: 'usd',
     source: token,
     description: 'grocery purchase', 
