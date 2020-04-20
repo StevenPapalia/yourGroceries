@@ -1,5 +1,6 @@
 import * as React from 'react';
 import GroceryItem from './GroceryItem';
+import { Input, GroceryWrapper } from './styles';
 
 interface Props {
   groceries: { item: string; category: string; price: number }[],
@@ -10,12 +11,12 @@ const GroceryList: React.FC<Props> = (props) => {
   const [selected, setSelected] = React.useState<string>("All");
   const [searchForm, setSearchForm] = React.useState<string>("");
 
-  const updateSearchForm = (e) => { setSearchForm(e.target.value); e.preventDefault(); }
+  const updateSearchForm = (e: React.ChangeEvent<HTMLInputElement>) => { setSearchForm(e.target.value); e.preventDefault(); }
 
-  const getSelected = (e) => { setSelected(e.target.value); e.preventDefault(); }
+  const getSelected = (e: React.ChangeEvent<HTMLSelectElement>) => { setSelected(e.target.value); e.preventDefault(); }
   
   return (
-    <div>
+    <GroceryWrapper>
       <span>Sort By: </span>
       <select value={selected} onChange={getSelected}>
         <option value="All">All</option>
@@ -23,7 +24,7 @@ const GroceryList: React.FC<Props> = (props) => {
         <option value="Dairy">Dairy</option>
         <option value="Meat">Meat</option>
       </select>
-      <span>Search: <input type="text" value={searchForm} onChange={updateSearchForm}/></span>
+      <span>Search: <Input type="text" value={searchForm} onChange={updateSearchForm} placeholder="ex: steak"/></span>
       <div>
         {props.groceries.filter((grocery) => { return grocery.item.toUpperCase().includes(searchForm.toUpperCase())}).map((grocery, index) => {
           return selected === "All" ? <GroceryItem key={index} grocery={grocery} addToCart={props.addToCart} />
@@ -31,7 +32,7 @@ const GroceryList: React.FC<Props> = (props) => {
           : null
         })}
       </div>
-    </div>
+    </GroceryWrapper>
   );
 }
 

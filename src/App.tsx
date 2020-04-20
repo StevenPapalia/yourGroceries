@@ -2,10 +2,11 @@ import * as React from 'react';
 import { ajax } from 'jquery';
 import GroceryList from './GroceryList'
 import GoToCart from './GoToCart'
+import { Header, Wrapper } from './styles';
 
 const App: React.FC = () => {
-  const [groceries, setGroceries] = React.useState<{ item: string; category: string; price: number }[]>([]);
-  const [cart, setCart] = React.useState<({ item: string; category: string; price: number; } | number)[]>([]);
+  const [groceries, setGroceries] = React.useState<{ item: string, category: string, price: number }[]>([]);
+  const [cart, setCart] = React.useState<({ item: string, category: string, price: number } | number)[]>([]);
 
   const addToCart = (grocery: { item: string, category: string, price: number }) => {
     let newCart = [];
@@ -22,16 +23,18 @@ const App: React.FC = () => {
     ajax({
       method: 'GET',
       url: '/groceries',
-      success: (data) => { setGroceries(data); },
-      error: (err) => { console.log(err); },
+      success: (data: { item: string, category: string, price: number }[]) => { setGroceries(data); },
+      error: (err: JQuery.jqXHR<any>) => { console.log(err); },
     });
   }, []);
 
   return (
     <div>
-      <h1>Welcome to YourGroceries!</h1>
-      <GoToCart cart={cart}/>
-      <GroceryList groceries={groceries} addToCart={addToCart} />
+      <Header>Welcome to yourgroceries.com</Header>
+      <Wrapper>
+        <GroceryList groceries={groceries} addToCart={addToCart} />
+        <GoToCart cart={cart} />
+      </Wrapper>
     </div>
   );
 }

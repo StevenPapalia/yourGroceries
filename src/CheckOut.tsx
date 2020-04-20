@@ -4,7 +4,7 @@ import CheckOutModal from './CheckOutModal';
 import PaymentForm from './PaymentForm';
 
 interface Props {
-  cart: ({ item: string; category: string; price: number; }|number)[]
+  cart: ({ item: string; category: string; price: number; } | number)[]
 }
 
 const CheckOut: React.FC<Props> = (props) => {

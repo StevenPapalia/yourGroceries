@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { ajax } from 'jquery';
-import { CardElement, injectStripe, ReactStripeElements, CardNumberElement, CardExpiryElement, CardCVCElement } from 'react-stripe-elements';
+import { CardElement, injectStripe, ReactStripeElements } from 'react-stripe-elements';
+import { Input } from './styles';
 
 interface Props {
   stripe?: ReactStripeElements.StripeProps
-  cart: ({ item: string; category: string; price: number; } | number)[]
+  cart: ({ item: string, category: string, price: number; } | number)[]
 }
 
 const PaymentForm: React.FC<Props> = (props) => {
@@ -22,8 +23,8 @@ const PaymentForm: React.FC<Props> = (props) => {
         url: '/purchase',
         data: JSON.stringify({ token, amount }),
         contentType: 'application/json',
-        success: (receipt) => { setReceiptURL(receipt) },
-        error: (err) => { console.log(err); },
+        success: (receipt: string) => { setReceiptURL(receipt) },
+        error: (err: JQuery.jqXHR<any>) => { console.log(err); },
       });
     } catch(err) { throw err; }
   }
@@ -33,9 +34,10 @@ const PaymentForm: React.FC<Props> = (props) => {
       <h1>Payment Form</h1>
       {receiptURL.length ? <div><div>Thank you for your purchase!</div><a href={receiptURL}>To view your receipt please click here!</a></div> :
       <form onSubmit={handleSubmit}>
-        <div><label>Name: </label><input type="text" value={name} onChange={updateName}/></div>
+        <div><label>Name: </label><Input type="text" value={name} onChange={updateName} placeholder="name" required /></div>
         <div><label>Amount: </label><span>${Number(props.cart.reduce((total, el) => { return Number(total) + (el[0].price * el[1]); }, 0)).toFixed(2)}</span></div>
-        <div><label>Credit Card Information: </label><CardElement /></div>
+        <div><label>Credit Card Information: </label></div>
+        <div><CardElement /></div>
         <button>Charge!</button>
       </form>}
     </div>

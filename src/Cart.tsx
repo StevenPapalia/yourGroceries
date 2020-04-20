@@ -1,6 +1,7 @@
 import * as React from 'react';
 import CartItem from './CartItem';
 import CheckOut from './CheckOut';
+import { CartItemDiv } from './styles';
 
 interface Props {
   cart: ({ item: string; category: string; price: number; } | number)[]
