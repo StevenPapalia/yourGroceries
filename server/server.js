@@ -32,15 +32,10 @@ const charge = (token, amt) => {
 }
 
 app.post('/purchase', jsonParser, async (req, res, next) => {
-  // console.log(req.body.token);
   try {
     let data = await charge(req.body.token.id, req.body.amount);
-    console.log(data);
-    res.send("Charged");
-  } catch(err) {
-    console.log(err);
-    res.status(500);
-  }
+    res.send(data.receipt_url);
+  } catch(err) { console.log(err); res.status(500); }
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
