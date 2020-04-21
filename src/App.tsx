@@ -32,7 +32,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <Header>Welcome to yourgroceries.com</Header>
+      <Header>Welcome to yourgroceries.com!</Header>
       <Wrapper>
         <GroceryList groceries={groceries} addToCart={addToCart} />
         <GoToCart cart={cart} emptyCart={emptyCart} />

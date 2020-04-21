@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CartItemDiv } from './styles'
+import { CartItemDiv, GroceryItemItem, GroceryItemCategory, GroceryItemPrice, GroceryItemButtonPrice, TotalPrice } from './styles'
 
 interface Props {
   key: number,
@@ -9,10 +9,10 @@ interface Props {
 const GroceryItem: React.FC<Props> = ({ cartItem }) => {
   return (
     <CartItemDiv>
-      <span>Item: {cartItem[0].item}, </span>
-      <span>Category: {cartItem[0].category}, </span>
-      <span>Amount: {cartItem[1]}, </span>
-      <span>Total Price: ${(cartItem[0].price * cartItem[1]).toFixed(2)}</span>
+      <GroceryItemItem>Item: {cartItem[0].item}</GroceryItemItem>
+      <GroceryItemCategory>Category: {cartItem[0].category}</GroceryItemCategory>
+      <GroceryItemPrice>Amount: {cartItem[1]}</GroceryItemPrice>
+      <GroceryItemButtonPrice><TotalPrice>Total Price: ${(cartItem[0].price * cartItem[1]).toFixed(2)}</TotalPrice></GroceryItemButtonPrice>
     </CartItemDiv>
   );
 }

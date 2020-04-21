@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ajax } from 'jquery';
 import { CardElement, injectStripe, ReactStripeElements } from 'react-stripe-elements';
-import { Input, Label, PaymentFormDiv, ActionButton } from './styles';
+import { HeaderDiv, Input, Label, PaymentFormDiv, ActionButton } from './styles';
 
 interface Props {
   stripe?: ReactStripeElements.StripeProps,
@@ -33,8 +33,12 @@ const PaymentForm: React.FC<Props> = ({ stripe, cart, closeModal, emptyCart }) =
 
   return (
     <div>
-      <h1>Payment Form</h1>
-      {receiptURL.length ? <div><div>Thank you for your purchase!</div><a href={receiptURL}>To view your receipt please click here!</a></div> :
+      <HeaderDiv>Payment Form</HeaderDiv>
+      {receiptURL.length ?
+      <PaymentFormDiv>
+        <PaymentFormDiv><Label payment>Thank you for your purchase!</Label></PaymentFormDiv>
+        <PaymentFormDiv><Label payment><a href={receiptURL}>To view your receipt please click here!</a></Label></PaymentFormDiv>
+      </PaymentFormDiv> :
       <form onSubmit={handleSubmit}>
         <PaymentFormDiv>
           <Label payment> Full Name: </Label>
